@@ -1,0 +1,24 @@
+import random
+
+def generate_random_array(size):
+    return [random.randint(1, 100) for _ in range(size)]
+
+def bubble_sort(arr):
+    n = len(arr)
+    for i in range(n):
+        for j in range(0, n-i-1):
+            if arr[j] > arr[j+1]:
+                arr[j], arr[j+1] = arr[j+1], arr[j]
+
+def print_array(arr):
+    print("Исходный массив:", arr)
+    bubble_sort(arr)
+    print("Отсортированный массив:", arr)
+    print()
+
+# Пример использования
+sizes = [5, 10, 15]  # Размеры массивов для сортировки
+
+for size in sizes:
+    arr = generate_random_array(size)
+    print_array(arr)
