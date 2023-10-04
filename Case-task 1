@@ -1,0 +1,62 @@
+operations_history = []
+
+def calculate(operator, num1, num2):
+    try:
+        if operator == '+':
+            result = num1 + num2
+        elif operator == '-':
+            result = num1 - num2
+        elif operator == '*':
+            result = num1 * num2
+        elif operator == '/':
+            result = num1 / num2
+        else:
+            print("Некорректный оператор!")
+            return None
+        
+        operations_history.append((operator, num1, num2, result))
+        return result
+    except ZeroDivisionError:
+        print("Ошибка: деление на ноль!")
+        return None
+    except Exception as e:
+        print("Произошла ошибка:", str(e))
+        return None
+
+def print_history():
+    if len(operations_history) == 0:
+        print("История операций пуста.")
+    else:
+        print("История операций:")
+        for operation in operations_history:
+            print(f"{operation[0]} {operation[1]} {operation[2]} = {operation[3]}")
+
+def clear_history():
+    operations_history.clear()
+    print("История операций очищена.")
+
+while True:
+    print("Введите два числа и оператор (+, -, *, /) через пробел (или 'q' для выхода):")
+    user_input = input()
+    
+    if user_input == 'q':
+        break
+    
+    try:
+        num1, operator, num2 = user_input.split()
+        num1 = float(num1)
+        num2 = float(num2)
+    except ValueError:
+        print("Некорректный ввод!")
+        continue
+    
+    result = calculate(operator, num1, num2)
+    if result is not None:
+        print("Результат:", result)
+    
+    print_history()
+    
+    print("Хотите очистить историю операций? (y/n)")
+    clear_input = input()
+    if clear_input.lower() == 'y':
+        clear_history()
