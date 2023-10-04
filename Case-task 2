@@ -1,0 +1,67 @@
+import os
+import shutil
+
+def display_directory_contents(path):
+    contents = os.listdir(path)
+    for item in contents:
+        item_path = os.path.join(path, item)
+        if os.path.isdir(item_path):
+            print("Directory:", item)
+        else:
+            print("File:", item)
+
+def create_directory(path):
+    os.mkdir(path)
+    print("Directory created:", path)
+
+def create_file(path):
+    with open(path, 'w') as file:
+        pass
+    print("File created:", path)
+
+def delete_directory(path):
+    shutil.rmtree(path)
+    print("Directory deleted:", path)
+
+def delete_file(path):
+    os.remove(path)
+    print("File deleted:", path)
+
+def move_file(source, destination):
+    shutil.move(source, destination)
+    print("File moved from", source, "to", destination)
+
+def rename_file(path, new_name):
+    new_path = os.path.join(os.path.dirname(path), new_name)
+    os.rename(path, new_path)
+    print("File renamed to:", new_name)
+
+def search_files(path, name):
+    matches = []
+    for root, dirs, files in os.walk(path):
+        for file in files:
+            if name in file:
+                matches.append(os.path.join(root, file))
+    print("Files matching the search:", matches)
+
+# Пример использования функций
+current_directory = os.getcwd()
+print("Current Directory:", current_directory)
+
+display_directory_contents(current_directory)
+
+new_directory = os.path.join(current_directory, "new_directory")
+create_directory(new_directory)
+
+new_file = os.path.join(current_directory, "new_file.txt")
+create_file(new_file)
+
+move_file(new_file, new_directory)
+
+renamed_file = os.path.join(new_directory, "renamed_file.txt")
+rename_file(new_file, "renamed_file.txt")
+
+delete_file(renamed_file)
+delete_directory(new_directory)
+
+search_files(current_directory, "example")
