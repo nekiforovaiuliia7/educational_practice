@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Web Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+            border-radius: 5px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            border: 0;
+            border-radius: 5px;
+            background-color: #008cba;
+            color: #fff;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Simple Web Page</h1>
+    <div class="container">
+        <h2>Interactive Content</h2>
+        <p>Click the button to change the text</p>
+        <button onclick="changeText()">Change Content</button>
+        <p id="content">Original content</p>
+        
+        <h2>Form with Client-Side Validation</h2>
+        <form onsubmit="saveData()">
+            <input type="text" id="inputData" placeholder="Enter your data" required>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        function changeText() {
+            document.getElementById("content").innerHTML = "Updated content";
+        }
+
+        function saveData() {
+            var input = document.getElementById("inputData").value;
+            // Here you can add client-side validation before sending data to the server
+            // For example, check if the input is not empty or meets specific criteria
+            // If the input is valid, you can send it to the server using AJAX
+            // Alternatively, you can use the fetch API to send a POST request to the server
+            // This example only demonstrates the client-side part of the validation
+            if (input.trim() === "") {
+                alert("Input cannot be empty");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+</html>
